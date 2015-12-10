@@ -1,0 +1,10 @@
+MEMORY
+{
+	ROM : ORIGIN = 0x8F00000, LENGTH = 32M
+}
+
+SECTIONS
+{
+	.text : {} >ROM
+}
+    
