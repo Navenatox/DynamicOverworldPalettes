@@ -1,5 +1,5 @@
 ﻿# Dynamic Overworld Palettes
-This is a hack for FireRed 1.0 that facilitates the insertion of new overworld palettes. For further info on what it does exactly, visit its thread on PokéCommunity.
+This is a hack for FireRed 1.0 that facilitates the insertion of new overworld palettes. For further info on what it does exactly, visit its [thread on PokéCommunity](http://www.pokecommunity.com/showthread.php?p=9030971).
 
 ## How to insert
 - Install devkitARM and add its variables to your path.
