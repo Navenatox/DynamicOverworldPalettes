@@ -134,6 +134,10 @@ insert_fix(rom, 0x7aae7, bytearray([0xe0]))
 # pal slot of scroll arrow in Fame Checker
 insert_fix(rom, 0x45fd52, bytearray([0x9]))
 
+# make it compatible with daniilS' snowflakes routine
+insert_fix(rom, 0x7a85e, bytearray([0x80, 0x18]))
+insert_fix(rom, 0x7a872, bytearray([0x1, 0x22, 0x5, 0xe0]))
+
 print 'Done!'
 
 rom.close()
