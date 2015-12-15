@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import sys
 import subprocess
@@ -18,12 +20,12 @@ def get_insertion_offset():
 		
 		offset = int(line.strip().split(' ')[0], 16) - 0x8000000
 		if (offset < 0 or offset > 0x2000000):
-			print 'The address in the linker script is unsuitable. Please fix it.'
+			print('The address in the linker script is unsuitable. Please fix it.')
 			sys.exit()
 		
 		return offset
 	
-	print 'Could not find \'.text\' symbol.'
+	print('Could not find \'.text\' symbol.')
 	sys.exit()
 
 def get_symbols():
@@ -62,11 +64,11 @@ roms = glob.glob('*.gba')
 rom = open(roms[0], 'r+b')
 symbols = get_symbols()
 
-print 'Inserting data...'
+print('Inserting data...')
 
 insert_data(rom, get_insertion_offset())
 
-print 'Inserting hooks...'
+print('Inserting hooks...')
 
 insert_hook(rom, 0x5f574,  0, symbols['ClearAllPalettes'])
 insert_hook(rom, 0x89e8,  1, symbols['FindPalette'])
@@ -106,7 +108,7 @@ insert_hook(rom, 0x7280,  1, symbols['DeleteOBJ'])
 insert_hook(rom, 0xdaf88,  0, symbols['DeleteReflection'])
 insert_hook(rom, 0xdb120,  0, symbols['DeleteWarpArrow'])
 
-print 'Inserting fixes...'
+print('Inserting fixes...')
 
 # don't auto-load NPC palettes into slot 0 or 0xA
 insert_fix(rom, 0x5f5e8, bytearray([0x70, 0x47]))
@@ -138,6 +140,6 @@ insert_fix(rom, 0x45fd52, bytearray([0x9]))
 insert_fix(rom, 0x7a85e, bytearray([0x80, 0x18]))
 insert_fix(rom, 0x7a872, bytearray([0x1, 0x22, 0x5, 0xe0]))
 
-print 'Done!'
+print('Done!')
 
 rom.close()
