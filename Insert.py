@@ -30,7 +30,7 @@ def get_insertion_offset():
 
 def get_symbols():
 	output = subprocess.check_output([NM, 'Build/Linked.o'])
-	lines = output.strip().split('\n')
+	lines = output.decode().strip().split('\n')
 	list = {}
 	
 	for line in lines:
