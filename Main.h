@@ -17,6 +17,7 @@ byte FindPalTag(hword);
 byte AddPalTag(hword);
 byte PalRefIncreaseCount(byte);
 void PalRefDecreaseCount(byte);
+void ClearAllPalRefs();
 void ClearAllPalettes();
 
 byte FindPalette(hword);
