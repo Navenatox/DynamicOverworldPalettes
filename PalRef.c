@@ -68,10 +68,15 @@ void PalRefDecreaseCount(byte PalSlot)
 	}
 }
 
-void ClearAllPalettes() // hook at 0x5F574
+void ClearAllPalRefs()
 {
 	int Fill = 0;
 	CpuSet(&Fill, PalRefs, 32 | CpuSetFill);
+}
+
+void ClearAllPalettes() // hook at 0x5F574
+{
+	int Fill = 0;
 	CpuSet(&Fill, &UnfadedPalettes[16], 256 | CpuSetFill);
 }
 
