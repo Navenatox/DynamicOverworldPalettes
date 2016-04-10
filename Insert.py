@@ -104,7 +104,8 @@ insert_hook(rom, 0x9d538,  1, symbols['LoadPalFossilImage'])
 insert_hook(rom, 0x9d568,  1, symbols['LoadPalFossilImage'])
 insert_hook(rom, 0x15d4e8,  2, symbols['SetPalSSAnneWake'])
 insert_hook(rom, 0x15d600,  2, symbols['SetPalSSAnneSmoke'])
-insert_hook(rom, 0x7280,  1, symbols['DeleteOBJ'])
+insert_hook(rom, 0x7280,  1, symbols['DeleteOBJFreeTiles'])
+insert_hook(rom, 0x779C,  1, symbols['DeleteAllOBJs'])
 insert_hook(rom, 0xdaf88,  0, symbols['DeleteReflection'])
 insert_hook(rom, 0xdb120,  0, symbols['DeleteWarpArrow'])
 
@@ -139,6 +140,9 @@ insert_fix(rom, 0x45fd52, bytearray([0x9]))
 # make it compatible with daniilS' snowflakes routine
 insert_fix(rom, 0x7a85e, bytearray([0x80, 0x18]))
 insert_fix(rom, 0x7a872, bytearray([0x1, 0x22, 0x5, 0xe0]))
+
+# needed for hook at 0x779C
+insert_fix(rom, 0x779A, bytearray([0x0, 0x0]))
 
 print('Done!')
 
