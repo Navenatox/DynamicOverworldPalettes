@@ -4,9 +4,15 @@
 DeleteOBJFreeTiles: @ hook at 0x7280
 	push {r4-r7,lr}
 	mov r5, r0
+	ldr r0, [r0,#0x14]
+	ldr r1, =0x8231D00 @ template for empty OBJ
+	cmp r0, r1
+	beq DeleteOBJFreeTiles_Return
 	ldrb r0, [r5,#5]
 	lsr r0, #4
 	bl PalRefDecreaseCount
+	
+	DeleteOBJFreeTiles_Return:
 	mov r0, r5
 	add r0, #0x3E
 	ldrb r1, [r0]
