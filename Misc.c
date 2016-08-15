@@ -39,10 +39,7 @@ byte GetPalTypeByPalTag(hword PalTag)
 byte GetPalSlotMisc(word OBJData)
 {
 	byte PalSlot;
-	hword PalTag;
-	if (OBJData == 0x83A5394) return FindOrLoadNPCPalette(0x1100); // shadow on jumping
-	if (OBJData == 0x8231D00) return PalRefIncreaseCount(0); // mysterious extra OBJ during healing animation
-	PalTag = *(hword*)(OBJData + 2);
+	hword PalTag = *(hword*)(OBJData + 2);
 	if (PalTag == 0xFFFF) return 0xFF;
 	PalSlot = FindPalette(PalTag);
 	if (PalSlot != 0xFF) return PalRefIncreaseCount(PalSlot);
