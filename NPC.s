@@ -86,6 +86,40 @@ SetPalFly: @ hook at 0x87188
 	bx r3
 
 
+SetPalFly2: @ hook at 0x86D58
+	push {r2}
+	ldr r0, =0x1100
+	bl FindOrLoadNPCPalette
+	pop {r2}
+	lsl r0, #4
+	ldrb r1, [r2,#5]
+	mov r3, #0xF
+	and r1, r3
+	mov r1, #0xD
+	neg r1, r1
+	and r1, r3
+	mov r3, #4
+	orr r1, r3
+	orr r0, r1
+	ldr r3, =0x8086D68+1
+	bx r3
+
+
+SetPalShadow: @ hook at 0xDB260
+	push {r2}
+	ldr r0, =0x1100
+	bl FindOrLoadNPCPalette
+	pop {r2}
+	lsl r0, #4
+	ldrb r1, [r2,#5]
+	mov r3, #0xF
+	and r1, r3
+	orr r0, r1
+	strb r0, [r2,#5]
+	mov r0, #0
+	pop {r4,r5,pc}
+
+
 RefreshFameCheckerNPCs: @ hook at 0x12D2AC, needed for instant refreshing
 	ldr r0, =0x0812c5ab
 	ldr r1, [sp,#0x14]
