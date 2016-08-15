@@ -85,6 +85,8 @@ insert_hook(rom, 0x5ebc0,  0, symbols['SetPalNPC4'])
 insert_hook(rom, 0xdadb4,  2, symbols['SetPalReflection'])
 insert_hook(rom, 0xdc410,  2, symbols['SetPalSurf'])
 insert_hook(rom, 0x87188,  1, symbols['SetPalFly'])
+insert_hook(rom, 0x86d58,  0, symbols['SetPalFly2'])
+insert_hook(rom, 0xdb260,  0, symbols['SetPalShadow'])
 insert_hook(rom, 0x12d2ac, 0, symbols['RefreshFameCheckerNPCs'])
 insert_hook(rom, 0x71b8,  0, symbols['SetPalMisc'])
 insert_hook(rom, 0x82664,  3, symbols['SetPalEmotionBubble'])
@@ -143,6 +145,12 @@ insert_fix(rom, 0x7a872, bytearray([0x1, 0x22, 0x5, 0xe0]))
 
 # needed for hook at 0x779C
 insert_fix(rom, 0x779A, bytearray([0x0, 0x0]))
+
+# remove byte casts for NPC palette number
+insert_fix(rom, 0x5f4ba, bytearray([0x0, 0x0, 0x0, 0x0]))
+insert_fix(rom, 0x5f548, bytearray([0xc0, 0x0]))
+insert_fix(rom, 0x5f54c, bytearray([0x0, 0x0]))
+insert_fix(rom, 0x5f5d2, bytearray([0x0, 0x0, 0x0, 0x0]))
 
 print('Done!')
 
